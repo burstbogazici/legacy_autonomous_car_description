@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+	<model name="traffic_cone_100cm_001">
+		<static>true</static>
+		<link name="link">
+
+		<collision name="collision">
+			<pose>0 0 0.5 1.5707 0 0</pose>
+			<geometry>
+				<box>
+					<size>0.400 1 0.250</size>
+				</box>
+			</geometry>
+		</collision>
+
+		<visual name="visual">
+			<pose>0 0 0 1.5707 0 0</pose>
+			<geometry>
+				<mesh>
+					<uri>model://traffic_cone_100cm_001/meshes/Traffic_Cone_100cm.DAE</uri>
+				</mesh>
+			</geometry>
+		</visual>
+
+	</link>
+	</model>
+</sdf>

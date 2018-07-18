@@ -1,0 +1,636 @@
+<sdf version='1.6'>
+	<world name='default'>
+
+	<include>
+	<uri>model://sun</uri>
+	</include>
+
+	<include>
+		<static>true</static>  
+		<pose>-133.620346 -285.350403 0.1 0 -0 2.265650</pose>
+		<uri>model://race_track</uri>
+	</include>
+	
+	<population name="Traffic_Cone_75cm_Population_001">
+		<model name="Traffic_Cone_75cm_001">
+			<include>
+				<static>true</static>
+				<uri>model://traffic_cone_75cm_001</uri>
+			</include>
+		</model>
+		<pose>3.5 2.15 0.2 0 -0 0</pose>
+		<box>
+		    <size>7 7 0.01</size>
+		</box>
+		<model_count>7</model_count>
+		<distribution>
+		    <type>linear-x</type>
+		</distribution>
+	</population>
+	
+	<include>
+		<name>Traffic_Cone_75cm_007</name>
+		<static>true</static>  
+		<pose>7 2.10 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_008</name>
+		<static>true</static>  
+		<pose>8 2.05 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_009</name>
+		<static>true</static>  
+		<pose>9 2.00 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_010</name>
+		<static>true</static>  
+		<pose>10 1.90 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_011</name>
+		<static>true</static>  
+		<pose>11 1.80 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_012</name>
+		<static>true</static>  
+		<pose>12 1.70 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_013</name>
+		<static>true</static>  
+		<pose>13 1.50 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_014</name>
+		<static>true</static>  
+		<pose>14 1.30 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_015</name>
+		<static>true</static>  
+		<pose>15 1.20 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_016</name>
+		<static>true</static>  
+		<pose>16 0.90 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_017</name>
+		<static>true</static>  
+		<pose>17 0.90 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_018</name>
+		<static>true</static>  
+		<pose>18 0.60 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_019</name>
+		<static>true</static>  
+		<pose>19 0.30 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_020</name>
+		<static>true</static>  
+		<pose>20 0.00 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_021</name>
+		<static>true</static>  
+		<pose>21 -0.40 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_022</name>
+		<static>true</static>  
+		<pose>22 -0.80 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_023</name>
+		<static>true</static>  
+		<pose>23 -1.20 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_024</name>
+		<static>true</static>  
+		<pose>24 -1.60 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_025</name>
+		<static>true</static>  
+		<pose>25 -2.00 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_026</name>
+		<static>true</static>  
+		<pose>26 -2.40 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_027</name>
+		<static>true</static>  
+		<pose>27 -2.80 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_028</name>
+		<static>true</static>  
+		<pose>28 -3.30 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_029</name>
+		<static>true</static>  
+		<pose>29 -3.80 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_030</name>
+		<static>true</static>  
+		<pose>30 -4.30 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_031</name>
+		<static>true</static>  
+		<pose>31 -4.90 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_032</name>
+		<static>true</static>  
+		<pose>32 -5.50 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_033</name>
+		<static>true</static>  
+		<pose>33 -6.10 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_034</name>
+		<static>true</static>  
+		<pose>34 -6.70 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_035</name>
+		<static>true</static>  
+		<pose>35 -7.30 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_036</name>
+		<static>true</static>  
+		<pose>36 -8.10 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_037</name>
+		<static>true</static>  
+		<pose>37 -8.90 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_038</name>
+		<static>true</static>  
+		<pose>38 -9.70 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_039</name>
+		<static>true</static>  
+		<pose>39 -10.50 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_040</name>
+		<static>true</static>  
+		<pose>40 -11.20 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_041</name>
+		<static>true</static>  
+		<pose>40.9 -12.20 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_042</name>
+		<static>true</static>  
+		<pose>41.8 -13.20 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_043</name>
+		<static>true</static>  
+		<pose>42.7 -14.20 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_044</name>
+		<static>true</static>  
+		<pose>43.6 -15.20 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_045</name>
+		<static>true</static>  
+		<pose>44.5 -16.20 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<population name="Traffic_Cone_75cm_Population_002">
+		<model name="Traffic_Cone_75cm_002">
+			<include>
+				<static>true</static>
+				<uri>model://traffic_cone_75cm_001</uri>
+			</include>
+		</model>
+		<pose>50 -6.5 0.2 0 0 -0.959931089</pose>
+		<box>
+		    <size>50 50 0.01</size>
+		</box>
+		<model_count>50</model_count>
+		<distribution>
+		    <type>linear-x</type>
+		</distribution>
+	</population>
+	
+	<population name="Traffic_Cone_75cm_Population_003">
+		<model name="Traffic_Cone_75cm_003">
+			<include>
+				<static>true</static>
+				<uri>model://traffic_cone_75cm_001</uri>
+			</include>
+		</model>
+		<pose>3.5 -2.15 0.2 0 -0 0</pose>
+		<box>
+		    <size>7 7 0.01</size>
+		</box>
+		<model_count>7</model_count>
+		<distribution>
+		    <type>linear-x</type>
+		</distribution>
+	</population>
+	
+	<population name="Traffic_Cone_75cm_Population_004">
+		<model name="Traffic_Cone_75cm_004">
+			<include>
+				<static>true</static>
+				<uri>model://traffic_cone_75cm_001</uri>
+			</include>
+		</model>
+		<pose>46.5 -9 0.2 0 0 -0.959931089</pose>
+		<box>
+		    <size>50 50 0.01</size>
+		</box>
+		<model_count>50</model_count>
+		<distribution>
+		    <type>linear-x</type>
+		</distribution>
+	</population>
+	
+	<include>
+		<name>Traffic_Cone_75cm_107</name>
+		<static>true</static>  
+		<pose>7 -2.20 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_108</name>
+		<static>true</static>  
+		<pose>8 -2.25 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_109</name>
+		<static>true</static>  
+		<pose>9 -2.30 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_110</name>
+		<static>true</static>  
+		<pose>10 -2.40 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_111</name>
+		<static>true</static>  
+		<pose>11 -2.50 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_112</name>
+		<static>true</static>  
+		<pose>12 -2.60 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_113</name>
+		<static>true</static>  
+		<pose>13 -2.70 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_114</name>
+		<static>true</static>  
+		<pose>14 -2.80 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_115</name>
+		<static>true</static>  
+		<pose>15 -2.90 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_116</name>
+		<static>true</static>  
+		<pose>16 -3.10 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_117</name>
+		<static>true</static>  
+		<pose>17 -3.40 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_118</name>
+		<static>true</static>  
+		<pose>18 -3.70 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_119</name>
+		<static>true</static>  
+		<pose>19 -4.00 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_120</name>
+		<static>true</static>  
+		<pose>20 -4.40 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_121</name>
+		<static>true</static>  
+		<pose>21 -4.80 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_122</name>
+		<static>true</static>  
+		<pose>22 -5.20 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_123</name>
+		<static>true</static>  
+		<pose>23 -5.60 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_124</name>
+		<static>true</static>  
+		<pose>24 -6.00 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_125</name>
+		<static>true</static>  
+		<pose>25 -6.40 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_126</name>
+		<static>true</static>  
+		<pose>26 -6.80 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_128</name>
+		<static>true</static>  
+		<pose>27 -7.30 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_129</name>
+		<static>true</static>  
+		<pose>28 -7.80 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_130</name>
+		<static>true</static>  
+		<pose>29 -8.30 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_131</name>
+		<static>true</static>  
+		<pose>30 -9.00 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_132</name>
+		<static>true</static>  
+		<pose>31 -9.70 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_133</name>
+		<static>true</static>  
+		<pose>32 -10.40 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_134</name>
+		<static>true</static>  
+		<pose>33 -11.10 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_135</name>
+		<static>true</static>  
+		<pose>34 -11.80 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_136</name>
+		<static>true</static>  
+		<pose>35 -12.50 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_137</name>
+		<static>true</static>  
+		<pose>35.9 -13.20 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_138</name>
+		<static>true</static>  
+		<pose>36.7 -14.00 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_139</name>
+		<static>true</static>  
+		<pose>37.5 -14.80 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_140</name>
+		<static>true</static>  
+		<pose>38.3 -15.60 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_141</name>
+		<static>true</static>  
+		<pose>39.1 -16.50 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_142</name>
+		<static>true</static>  
+		<pose>39.8 -17.30 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_143</name>
+		<static>true</static>  
+		<pose>40.5 -18.00 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_75cm_144</name>
+		<static>true</static>  
+		<pose>41.3 -18.80 0.2 0 -0 0</pose>
+		<uri>model://traffic_cone_75cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_100cm_001</name>
+		<static>true</static>  
+		<pose>72.5 -58.4 0.2 0 0 -0.904326</pose>
+		<uri>model://traffic_cone_100cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_100cm_002</name>
+		<static>true</static>  
+		<pose>71.4 -59.5 0.2 0 0 -0.900239</pose>
+		<uri>model://traffic_cone_100cm_001</uri>
+	</include>
+	
+	<include>
+		<name>Traffic_Cone_100cm_003</name>
+		<static>true</static>  
+		<pose>72 -59.0 0.2 0 -0 -0.852161</pose>
+		<uri>model://traffic_cone_100cm_001</uri>
+	</include>
+	    
+  </world>
+</sdf>

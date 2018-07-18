@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+	<model name="traffic_cone_75cm_001">
+		<static>true</static>
+		<link name="link">
+
+		<collision name="collision">
+			<pose>0 0 0.375 0 0 0</pose>
+			<geometry>
+				<cylinder>
+					<radius>0.240</radius>
+					<length>0.750</length>
+				</cylinder>
+			</geometry>
+		</collision>
+
+		<visual name="visual">
+			<pose>0 0 0 1.5707 0 0</pose>
+			<geometry>
+				<mesh>
+					<uri>model://traffic_cone_75cm_001/meshes/Traffic_Cone_75cm.dae</uri>
+				</mesh>
+			</geometry>
+		</visual>
+
+	</link>
+	</model>
+</sdf>

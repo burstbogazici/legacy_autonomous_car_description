@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<sdf version="1.4">
+  <model name="race_track">
+    <static>true</static>
+    <link name="link">
+    
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>530 830 0.2</size>
+          </box>
+        </geometry>
+      </collision>
+      
+      <visual name="visual">
+        <pose>0 0 0 0 0 0</pose>
+        <cast_shadows>false</cast_shadows>
+        <geometry>
+          <box>
+            <size>530 830 0.2</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://race_track/materials/scripts</uri>
+            <uri>model://race_track/materials/textures</uri>
+            <name>vrc/race_track</name>
+          </script>
+        </material>
+      </visual>
+
+    </link>
+  </model>
+</sdf>

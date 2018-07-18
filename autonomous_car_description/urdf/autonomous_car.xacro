@@ -1,0 +1,218 @@
+<?xml version="1.0"?>
+<robot name="autonomous_car" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<!--
+ 1. Create model with URDF: http://wiki.ros.org/urdf/Tutorials/Create%20your%20own%20urdf%20file
+ 2. Add controllable joints: http://wiki.ros.org/urdf/Tutorials/Building%20a%20Movable%20Robot%20Model%20with%20URDF
+ 3. Physical properties: http://wiki.ros.org/urdf/Tutorials/Adding%20Physical%20and%20Collision%20Properties%20to%20a%20URDF%20Model or http://gazebosim.org/tutorials/?tut=ros_urdf
+ 4. Use Macros: http://wiki.ros.org/urdf/Tutorials/Using%20Xacro%20to%20Clean%20Up%20a%20URDF%20File
+ 5. Link to Gazebo: http://wiki.ros.org/urdf/Tutorials/Using%20a%20URDF%20in%20Gazebo
+-->
+
+    <!-- X axis direction is forward, Y axis direction is left -->
+
+    <xacro:include filename="$(find autonomous_car_description)/urdf/autonomous_car_functions.xacro" />
+    <xacro:include filename="$(find autonomous_car_description)/urdf/autonomous_car_physical.xacro" />
+    <xacro:include filename="$(find autonomous_car_description)/urdf/autonomous_car_joints.xacro" />
+    <xacro:include filename="$(find autonomous_car_description)/urdf/autonomous_car_transmissions.xacro" />
+
+    <link name="base_link" />
+
+    <link name="baseplate">
+        <visual>
+            <material name="acrylic"/>
+            <xacro:baseplate_geometry/>
+        </visual>
+        <collision>
+            <xacro:baseplate_geometry/>
+        </collision>
+        <inertial>
+            <xacro:baseplate_inertial/>
+        </inertial>
+    </link>
+    <xacro:fixed_offset_joint parent="base_link" child="baseplate" offset="0 0 0"/>
+
+    <link name="front_shaft">
+        <visual>
+            <material name="black"/>
+            <xacro:front_shaft_geometry/>
+        </visual>
+        <collision>
+            <xacro:front_shaft_geometry/>
+        </collision>
+        <inertial>
+            <xacro:front_shaft_inertial/>
+        </inertial>
+    </link>
+    <xacro:fixed_offset_joint parent="baseplate" child="front_shaft" offset="${front_to_rear_wheel_center/2} 0 ${(front_wheel_diameter - rear_wheel_diameter) / 2}"/>
+    <!--<xacro:dampener_joint parent="front_mount" child="front_shaft" offset="${front_to_rear_wheel_center/4} 0 -${baseplate_to_wheel_center/2}"/> I can not get the dampener joint to work properly. The car seems to be bouncing around, like the spring is too hard and dampening is too little. I already tried adjusting several parameters. -->
+
+    <link name="rear_shaft">
+        <visual>
+            <material name="black"/>
+            <xacro:rear_shaft_geometry/>
+        </visual>
+        <collision>
+            <xacro:rear_shaft_geometry/>
+        </collision>
+        <inertial>
+            <xacro:rear_shaft_inertial/>
+        </inertial>
+    </link>
+    <xacro:fixed_offset_joint parent="baseplate" child="rear_shaft" offset="-${front_to_rear_wheel_center/2} 0 0"/>
+    <!-- <xacro:dampener_joint parent="rear_mount" child="rear_shaft" offset="-${front_to_rear_wheel_center/4} 0 -${baseplate_to_wheel_center/2}"/> I can not get the dampener joint to work properly. The car seems to be bouncing around, like the spring is too hard and dampening is too little. I already tried adjusting several parameters. -->
+
+    <link name="front_right_hinge">
+        <visual>
+            <material name="white"/>
+            <xacro:hinge_geometry/>
+        </visual>
+        <!--<collision>
+            <xacro:hinge_geometry/>
+        </collision>-->
+        <inertial>
+            <xacro:hinge_inertial/>
+        </inertial>
+    </link>
+    <xacro:hinge_joint parent="front_shaft" child="front_right_hinge" offset="0 -${front_left_to_right_wheel_center/2} 0"/>
+    <xacro:hinge_transmission hinge="front_right_hinge"/>
+
+    <link name="front_left_hinge">
+        <visual>
+            <material name="white"/>
+            <xacro:hinge_geometry/>
+        </visual>
+        <!--<collision>
+            <xacro:hinge_geometry/>
+        </collision>-->
+        <inertial>
+            <xacro:hinge_inertial/>
+        </inertial>
+    </link>
+    <xacro:hinge_joint parent="front_shaft" child="front_left_hinge" offset="0 ${front_left_to_right_wheel_center/2} 0"/>
+    <xacro:hinge_transmission hinge="front_left_hinge"/>
+
+    <link name="front_right_wheel">
+        <visual>
+            <material name="black"/>
+            <xacro:front_wheel_geometry/>
+        </visual>
+        <collision>
+            <xacro:front_wheel_geometry/>
+            <!--<contact_coefficients mu="0" kp="1000.0" kd="1.0"/>-->  <!-- mu=The friction coefficient, kp=Stiffness coefficient, kd=Dampening coefficient -->
+        </collision>
+        <inertial>
+            <xacro:front_wheel_inertial/>
+        </inertial>
+    </link>
+    <xacro:wheel_joint parent="front_right_hinge" child="front_right_wheel" offset="0 0 0"/>
+    <xacro:wheel_transmission wheel="front_right_wheel"/>
+
+    <link name="front_left_wheel">
+        <visual>
+            <material name="black"/>
+            <xacro:front_wheel_geometry/>
+        </visual>
+        <collision>
+            <xacro:front_wheel_geometry/>
+            <!--<contact_coefficients mu="0" kp="1000.0" kd="1.0"/>-->  <!-- mu=The friction coefficient, kp=Stiffness coefficient, kd=Dampening coefficient -->
+        </collision>
+        <inertial>
+            <xacro:front_wheel_inertial/>
+        </inertial>
+    </link>
+    <xacro:wheel_joint parent="front_left_hinge" child="front_left_wheel" offset="0 0 0"/>
+    <xacro:wheel_transmission wheel="front_left_wheel"/>
+
+    <link name="rear_right_wheel">
+        <visual>
+            <material name="black"/>
+            <xacro:rear_wheel_geometry/>
+        </visual>
+        <collision>
+            <xacro:rear_wheel_geometry/>
+            <!--<contact_coefficients mu="0" kp="1000.0" kd="1.0"/>-->  <!-- mu=The friction coefficient, kp=Stiffness coefficient, kd=Dampening coefficient -->
+        </collision>
+        <inertial>
+            <xacro:rear_wheel_inertial/>
+        </inertial>
+    </link>
+    <xacro:wheel_joint parent="rear_shaft" child="rear_right_wheel" offset="0 -${rear_left_to_right_wheel_center/2} 0"/>
+    <xacro:wheel_transmission wheel="rear_right_wheel"/>
+
+    <link name="rear_left_wheel">
+        <visual>
+            <material name="black"/>
+            <xacro:rear_wheel_geometry/>
+        </visual>
+        <collision>
+            <xacro:rear_wheel_geometry/>
+            <!--<contact_coefficients mu="0" kp="1000.0" kd="1.0"/>-->  <!-- mu=The friction coefficient, kp=Stiffness coefficient, kd=Dampening coefficient -->
+        </collision>
+        <inertial>
+            <xacro:rear_wheel_inertial/>
+        </inertial>
+    </link>
+    <xacro:wheel_joint parent="rear_shaft" child="rear_left_wheel" offset="0 ${rear_left_to_right_wheel_center/2} 0"/>
+    <xacro:wheel_transmission wheel="rear_left_wheel"/>
+
+    <xacro:include filename="$(find autonomous_car_description)/urdf/autonomous_car_gazebo.xacro" />
+    <xacro:include filename="$(find autonomous_car_description)/urdf/autonomous_car_materials.xacro" />
+
+    <link name="camera_mount">
+        <visual>
+            <material name="blue"/>
+            <xacro:camera_mount_geometry/>
+        </visual>
+        <collision>
+            <xacro:camera_mount_geometry/>
+        </collision>
+        <inertial>
+            <xacro:camera_mount_inertial/>
+        </inertial>
+    </link>
+    <xacro:fixed_offset_joint parent="baseplate" child="camera_mount" offset="${baseplate_length/2-baseplate_frontedge_to_camera} 0 ${baseplate_thickness/2}"/>
+
+    <link name="front_camera_link">
+        <visual>
+            <material name="blue"/>
+            <xacro:camera_geometry/>
+        </visual>
+        <collision>
+            <xacro:camera_geometry/>
+        </collision>
+        <inertial>
+            <xacro:camera_inertial/>
+        </inertial>
+    </link>
+    <xacro:fixed_offset_joint parent="camera_mount" child="front_camera_link" offset="0 0 ${camera_mount_height+camera_height/2}"/>
+
+    <link name="hokuyo_mount">
+        <visual>
+            <material name="red"/>
+            <xacro:lidar_mount_geometry/>
+        </visual>
+        <collision>
+            <xacro:lidar_mount_geometry/>
+        </collision>
+        <inertial>
+            <xacro:lidar_mount_inertial/>
+        </inertial>
+    </link>
+    <xacro:fixed_offset_joint parent="baseplate" child="hokuyo_mount" offset="${front_to_rear_wheel_center/2 + 0.1} 0 +${front_wheel_diameter - rear_wheel_diameter}"/>
+
+    <link name="hokuyo_link">
+        <visual>
+            <material name="red"/>
+            <xacro:lidar_geometry/>
+        </visual>
+        <collision>
+            <xacro:lidar_geometry/>
+        </collision>
+        <inertial>
+            <xacro:lidar_inertial/>
+        </inertial>
+    </link>
+    <xacro:fixed_offset_joint parent="hokuyo_mount" child="hokuyo_link" offset="0 0 ${lidar_mount_height}"/>
+
+</robot>

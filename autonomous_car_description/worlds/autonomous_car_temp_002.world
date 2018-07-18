@@ -1,0 +1,50 @@
+<sdf version='1.6'>
+	<world name='default'>
+
+	<include>
+	<uri>model://sun</uri>
+	</include>
+
+	<include>
+		<static>true</static>  
+		<pose>-133.620346 -285.350403 0.1 0 -0 2.265650</pose>
+		<uri>model://race_track</uri>
+	</include>
+	
+	<population name="Traffic_Cone_75cm_Population_001">
+		<model name="Traffic_Cone_75cm_001">
+			<include>
+				<static>true</static>
+				<uri>model://traffic_cone_75cm_001</uri>
+			</include>
+		</model>
+		<pose>5 2.15 0.2 0 -0 0</pose>
+		<box>
+		    <size>10 10 0.01</size>
+		</box>
+		<model_count>10</model_count>
+		<distribution>
+		    <type>linear-x</type>
+		</distribution>
+	</population>
+	
+	<population name="Traffic_Cone_75cm_Population_002">
+		<model name="Traffic_Cone_75cm_002">
+			<include>
+				<static>true</static>
+				<uri>model://traffic_cone_75cm_001</uri>
+			</include>
+		</model>
+		<pose>5 -2.15 0.2 0 -0 0</pose>
+		<box>
+		    <size>10 10 0.01</size>
+		</box>
+		<model_count>10</model_count>
+		<distribution>
+		    <type>linear-x</type>
+		</distribution>
+	</population>
+	
+    
+  </world>
+</sdf>
