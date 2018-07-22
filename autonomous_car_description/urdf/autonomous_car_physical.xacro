@@ -1,228 +1,136 @@
 <?xml version="1.0"?>
 <robot name="autonomous_car" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <!-- X axis direction is forward, Y axis direction is left -->
+<!-- Chassis related properties -->
+<xacro:property name="chassis_width" value="1.100" />
+<xacro:property name="chassis_length" value="2.717" />
+<xacro:property name="chassis_thickness" value="0.995" />
+<xacro:property name="chassis_weight" value="1356.0" />
+<xacro:property name="chassis_height" value="0.217" />
 
-    <!-- IMU related properties -->
-    <xacro:property name="imu_width" value="0.05" />
-    <xacro:property name="imu_length" value="0.05" />
-    <xacro:property name="imu_height" value="0.03" />
+<!-- Steering related properties -->
+<xacro:property name="steering_wheel_angle_limit" value="${30/180*pi}" />
 
-    <!-- Wheel related properties -->
-    <xacro:property name="front_wheel_diameter" value="0.600" />
-    <xacro:property name="front_wheel_thickness" value="0.080" />
-    <xacro:property name="front_wheel_weight" value="0.150" />
+<!-- Wheel related properties -->
+<xacro:property name="front_wheel_diameter" value="0.600" />
+<xacro:property name="front_wheel_weight" value="11" />
 
-    <xacro:property name="rear_wheel_diameter" value="0.430" />
-    <xacro:property name="rear_wheel_thickness" value="0.100" />
-    <xacro:property name="rear_wheel_weight" value="0.150" />
+<xacro:property name="rear_wheel_diameter" value="0.430" />
+<xacro:property name="rear_wheel_weight" value="11" />
 
-    <!-- suspension stiffness, damping, and limits -->
-    <xacro:property name="susp_travel" value="${wheel_diameter/2}"/>
-    <xacro:property name="susp_lower" value="${-susp_travel/2}"/>
-    <xacro:property name="susp_upper" value="${susp_travel/2}"/>
-    <xacro:property name="susp_damping" value="70"/>
-    <xacro:property name="susp_stiffness" value="5"/>
-    <xacro:property name="susp_spring_center" value="0.05"/>
+<!-- Car physical layout -->
+<xacro:property name="front_to_rear_wheel_center" value="2.717" />
+<xacro:property name="front_left_to_right_wheel_center" value="1.100" />
+<xacro:property name="rear_left_to_right_wheel_center" value="0.900" />
+<xacro:property name="baseplate_to_wheel_center" value="0.300" />
 
-    <!-- RC car physical layout -->
-    <xacro:property name="front_to_rear_wheel_center" value="2.717" />
-    <xacro:property name="front_left_to_right_wheel_center" value="1.100" />
-    <xacro:property name="rear_left_to_right_wheel_center" value="0.900" />
-    <xacro:property name="baseplate_to_wheel_center" value="0.300" />
+<!-- Camera related properties -->
+<xacro:property name="camera_width" value="0.094" />
+<xacro:property name="camera_height" value="0.029" />
+<xacro:property name="camera_depth" value="0.024" />
+<xacro:property name="camera_weight" value="0.162" />
+<xacro:property name="baseplate_frontedge_to_camera" value="0.02" />
+<xacro:property name="camera_mount_height" value="0.3" />
+<xacro:property name="camera_mount_diameter" value="0.01" />
+<xacro:property name="camera_disparity" value="0.14" />
 
-    <!-- Baseplate related properties -->
-    <xacro:property name="baseplate_width" value="0.800" />
-    <xacro:property name="baseplate_length" value="2.817" />
-    <xacro:property name="baseplate_thickness" value="0.996" />
-    <xacro:property name="baseplate_weight" value="0.500" />
+<!-- LiDAR related properties -->
+<xacro:property name="lidar_width" value="0.05" />
+<xacro:property name="lidar_length" value="0.05" />
+<xacro:property name="lidar_height" value="0.05" />
+<xacro:property name="lidar_weight" value="0.200" />
+<xacro:property name="lidar_mount_diameter" value="0.08" />
+<xacro:property name="lidar_mount_height" value="0.3" />
 
-    <!-- Shaft and mount related properties -->
-    <xacro:property name="mount_weight" value="0.500" />
-    <xacro:property name="shaft_weight" value="0.100" />
+<!-- Chassis -->
+<xacro:macro name="chassis_visual">
+    <origin xyz="0 0 ${chassis_thickness/2}" rpy="0 0 0" />
+    <geometry>
+        <box size="${chassis_width} ${chassis_length} ${chassis_thickness}"/>
+    </geometry>
+</xacro:macro>
+<xacro:macro name="chassis_geometry">
+    <origin xyz="0 0 ${chassis_thickness/4}" rpy="0 0 0" />
+    <geometry>
+        <box size="${chassis_width} ${chassis_length} ${chassis_thickness/2}"/>
+    </geometry>
+</xacro:macro>
+<xacro:macro name="chassis_inertial">
+    <origin xyz="0 0 ${chassis_thickness/4}" rpy="0 0 0" />
+    <xacro:box_inertial mass="${chassis_weight}" length="${chassis_length}" width="${chassis_width}" height="${chassis_thickness/2}" />
+</xacro:macro>
 
-    <!-- Camera related properties -->
-    <xacro:property name="camera_width" value="0.094" />
-    <xacro:property name="camera_height" value="0.029" />
-    <xacro:property name="camera_depth" value="0.024" />
-    <xacro:property name="camera_weight" value="0.162" />
-    <xacro:property name="baseplate_frontedge_to_camera" value="0.02" />
-    <xacro:property name="camera_mount_height" value="0.05" />
-    <xacro:property name="camera_mount_diameter" value="0.01" />
-    <xacro:property name="camera_disparity" value="0.14" />
+<!-- Hinge -->
+<xacro:macro name="hinge_geometry">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+        <sphere radius="0.015"/>
+    </geometry>
+</xacro:macro>
+<xacro:macro name="hinge_inertial">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <mass value="1" />
+    <inertia ixx="0.004" ixy="0.0" ixz="0.0" iyy="0.004" iyz="0.0" izz="0.004"/>
+</xacro:macro>
 
-    <!-- LiDAR related properties -->
-    <xacro:property name="lidar_width" value="0.05" />
-    <xacro:property name="lidar_length" value="0.05" />
-    <xacro:property name="lidar_height" value="0.05" />
-    <xacro:property name="lidar_weight" value="0.200" />
-    <xacro:property name="lidar_mount_diameter" value="0.08" />
-    <xacro:property name="lidar_mount_height" value="0.13" />
+<!-- Wheel -->
+<xacro:macro name="front_wheel_visual">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+        <mesh filename="package://autonomous_car_description/meshes/wheel.obj" scale="0.01 0.01 0.01"/>
+    </geometry>
+</xacro:macro>
+<xacro:macro name="front_wheel_geometry">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+        <sphere radius="${front_wheel_diameter/2}"/>
+    </geometry>
+</xacro:macro>
+<xacro:macro name="front_wheel_inertial">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <xacro:sphere_inertial mass="${front_wheel_weight}" radius="${front_wheel_diameter/2}" />
+</xacro:macro>
 
+<xacro:macro name="rear_wheel_visual">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+        <mesh filename="package://autonomous_car_description/meshes/wheel.obj" scale="0.0071 0.0071 0.0071"/>
+    </geometry>
+</xacro:macro>
+<xacro:macro name="rear_wheel_geometry">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+        <sphere radius="${rear_wheel_diameter/2}"/>
+    </geometry>
+</xacro:macro>
+<xacro:macro name="rear_wheel_inertial">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <xacro:sphere_inertial mass="${rear_wheel_weight}" radius="${rear_wheel_diameter/2}" />
+</xacro:macro>
 
-    <!-- Steering related properties -->
-    <xacro:property name="steering_wheel_angle_limit" value="${30/180*pi}" />
-
-
-
-    <!-- IMU -->
-    <xacro:macro name="imu_geometry">
-        <origin xyz="0 0 0" rpy="0 0 0" /> <!-- origin (0,0,0) is in the center of the box -->
-        <geometry>
-            <box size="${imu_length} ${imu_width} ${imu_height}"/> <!-- 50x50x30 mm, Please confirm against 3D drawings -->
-        </geometry>
-    </xacro:macro>
-    <xacro:macro name="imu_inertial">
-        <origin xyz="0 0 0" rpy="0 0 0" /> <!-- origin (0,0,0) is in the center of the box -->
-        <xacro:box_inertial mass="0.010" length="${imu_length}" width="${imu_width}" height="${imu_height}" /> <!-- 10 grams -->
-    </xacro:macro>
-
-
-    <!-- Baseplate -->
-    <xacro:macro name="baseplate_geometry">
-        <origin xyz="0 0 ${baseplate_thickness/2}" rpy="0 0 0" /> <!-- origin (0,0,0) is in the center of the box, so place the origin of this in the bottom of baseplate -->
-        <geometry>
-            <box size="${baseplate_length} ${baseplate_width} ${baseplate_thickness}"/> <!-- 50x20x6.75 cm, X-axis is front of vehicle -->
-        </geometry>
-    </xacro:macro>
-    <xacro:macro name="baseplate_inertial">
-        <origin xyz="0 0 ${baseplate_thickness/2}" rpy="0 0 0" /> <!-- origin (0,0,0) is in the center of the box, so place the origin of this in the bottom of baseplate -->
-        <xacro:box_inertial mass="${baseplate_weight}" length="${baseplate_length}" width="${baseplate_width}" height="${baseplate_thickness}" />
-    </xacro:macro>
-
-
-    <!-- Mount -->
-    <xacro:macro name="front_mount_geometry">
-        <origin xyz="0 0 0" rpy="0 1.570796327 0" /> <!-- origin (0,0,0) is in the center of the box -->
-        <geometry>
-            <box size="0.05 0.12 0.01"/>
-        </geometry>
-    </xacro:macro>
-    <xacro:macro name="rear_mount_geometry">
-        <origin xyz="0 0 0" rpy="0 -1.570796327 0" /> <!-- origin (0,0,0) is in the center of the box -->
-        <geometry>
-            <box size="0.05 0.12 0.01"/>
-        </geometry>
-    </xacro:macro>
-    <xacro:macro name="front_mount_inertial">
-        <origin xyz="0 0 0" rpy="0 1.570796327 0" /> <!-- origin (0,0,0) is in the center of the box -->
-        <xacro:box_inertial mass="${mount_weight}" length="0.05" width="0.12" height="0.01" />
-    </xacro:macro>
-    <xacro:macro name="rear_mount_inertial">
-        <origin xyz="0 0 0" rpy="0 -1.570796327 0" /> <!-- origin (0,0,0) is in the center of the box -->
-        <xacro:box_inertial mass="${mount_weight}" length="0.05" width="0.12" height="0.01" />
-    </xacro:macro>
-
-
-    <!-- Shaft -->
-    <xacro:macro name="front_shaft_geometry">
-        <origin xyz="0 0 0" rpy="1.570796327 0 0" /> <!-- origin (0,0,0) is in the center of the cylinder -->
-        <geometry>
-            <cylinder length="${front_left_to_right_wheel_center}" radius="0.018"/> <!-- confirm length between wheels -->
-        </geometry>
-    </xacro:macro>
-    <xacro:macro name="front_shaft_inertial">
-        <origin xyz="0 0 0" rpy="1.570796327 0 0" /> <!-- origin (0,0,0) is in the center of the cylinder -->
-        <xacro:cylinder_inertial mass="${shaft_weight}" radius="0.018" length="${front_left_to_right_wheel_center}" />
-    </xacro:macro>
-
-    <xacro:macro name="rear_shaft_geometry">
-        <origin xyz="0 0 0" rpy="1.570796327 0 0" /> <!-- origin (0,0,0) is in the center of the cylinder -->
-        <geometry>
-            <cylinder length="${rear_left_to_right_wheel_center}" radius="0.018"/> <!-- confirm length between wheels -->
-        </geometry>
-    </xacro:macro>
-    <xacro:macro name="rear_shaft_inertial">
-        <origin xyz="0 0 0" rpy="1.570796327 0 0" /> <!-- origin (0,0,0) is in the center of the cylinder -->
-        <xacro:cylinder_inertial mass="${shaft_weight}" radius="0.018" length="${rear_left_to_right_wheel_center}" />
-    </xacro:macro>
+<!-- Camera -->
+<xacro:macro name="camera_geometry">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+        <box size="${camera_depth} ${camera_width} ${camera_height}"/>
+    </geometry>
+</xacro:macro>
+<xacro:macro name="camera_inertial">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <xacro:box_inertial mass="${camera_weight}" length="${camera_depth}" width="${camera_width}" height="${camera_height}" />
+</xacro:macro>
 
 
-    <!-- Hinge -->
-    <xacro:macro name="hinge_geometry">
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <geometry>
-            <sphere radius="0.015"/>
-        </geometry>
-    </xacro:macro>
-    <xacro:macro name="hinge_inertial">
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <mass value="0.05" />
-        <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" /> <!-- small inertia -->
-    </xacro:macro>
-
-
-    <!-- Wheel -->
-    <xacro:macro name="front_wheel_geometry">
-        <origin xyz="0 0 0" rpy="1.570796327 0 0" /> <!-- origin (0,0,0) is in the center of the cylinder -->
-        <geometry>
-            <cylinder length="${front_wheel_thickness}" radius="${front_wheel_diameter/2}"/>
-        </geometry>
-    </xacro:macro>
-    <xacro:macro name="front_wheel_inertial">
-        <origin xyz="0 0 0" rpy="1.570796327 0 0" /> <!-- origin (0,0,0) is in the center of the cylinder -->
-        <xacro:cylinder_inertial mass="${front_wheel_weight}" radius="${front_wheel_diameter/2}" length="${front_wheel_thickness}" />
-    </xacro:macro>
-
-    <xacro:macro name="rear_wheel_geometry">
-        <origin xyz="0 0 0" rpy="1.570796327 0 0" /> <!-- origin (0,0,0) is in the center of the cylinder -->
-        <geometry>
-            <cylinder length="${rear_wheel_thickness}" radius="${rear_wheel_diameter/2}"/>
-        </geometry>
-    </xacro:macro>
-    <xacro:macro name="rear_wheel_inertial">
-        <origin xyz="0 0 0" rpy="1.570796327 0 0" /> <!-- origin (0,0,0) is in the center of the cylinder -->
-        <xacro:cylinder_inertial mass="${rear_wheel_weight}" radius="${rear_wheel_diameter/2}" length="${rear_wheel_thickness}" />
-    </xacro:macro>
-
-
-    <!-- Camera -->
-    <xacro:macro name="camera_mount_geometry">
-        <origin xyz="0 0 ${camera_mount_height/2}" rpy="0 0 0" /> <!-- origin (0,0,0) is in the center of the box -->
-        <geometry>
-            <cylinder length="${camera_mount_height}" radius="${camera_mount_diameter/2}"/> <!-- confirm length between wheels -->
-        </geometry>
-    </xacro:macro>
-    <xacro:macro name="camera_mount_inertial">
-        <origin xyz="0 0 0" rpy="0 0 0" /> <!-- origin (0,0,0) is in the center of the box -->
-        <mass value="0.005" /> <!-- 5 grams -->
-        <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" /> <!-- small inertia -->
-    </xacro:macro>
-
-    <xacro:macro name="camera_geometry">
-        <origin xyz="0 0 0" rpy="0 0 0" /> <!-- origin (0,0,0) is in the center of the box -->
-        <geometry>
-            <box size="${camera_depth} ${camera_width} ${camera_height}"/>
-        </geometry>
-    </xacro:macro>
-    <xacro:macro name="camera_inertial">
-        <origin xyz="0 0 0" rpy="0 0 0" /> <!-- origin (0,0,0) is in the center of the box -->
-        <xacro:box_inertial mass="${camera_weight}" length="${camera_depth}" width="${camera_width}" height="${camera_height}" />
-    </xacro:macro>
-
-
-    <!-- LiDAR -->
-    <xacro:macro name="lidar_mount_geometry">
-        <origin xyz="0 0 ${lidar_mount_height/2}" rpy="0 0 0" /> <!-- origin (0,0,0) is in the center of the box -->
-        <geometry>
-            <cylinder length="${lidar_mount_height}" radius="${lidar_mount_diameter/2}"/> <!-- confirm length between wheels -->
-        </geometry>
-    </xacro:macro>
-    <xacro:macro name="lidar_mount_inertial">
-        <origin xyz="0 0 0" rpy="0 0 0" /> <!-- origin (0,0,0) is in the center of the box -->
-        <mass value="0.020" />
-        <inertia ixx="1e-7" ixy="0" ixz="0" iyy="1e-7" iyz="0" izz="1e-7" />
-    </xacro:macro>
-
-    <xacro:macro name="lidar_geometry">
-        <origin xyz="0 0 ${lidar_height/2}" rpy="0 0 0" /> <!-- origin (0,0,0) is in the center of the box -->
-        <geometry>
-            <box size="${lidar_length} ${lidar_width} ${lidar_height}"/>
-        </geometry>
-    </xacro:macro>
-    <xacro:macro name="lidar_inertial">
-        <origin xyz="0 0 0" rpy="0 0 0" /> <!-- origin (0,0,0) is in the center of the box -->
-        <xacro:box_inertial mass="${lidar_weight}" length="${lidar_length}" width="${lidar_width}" height="${lidar_height}" />
-    </xacro:macro>
+<!-- LiDAR -->
+<xacro:macro name="lidar_geometry">
+    <origin xyz="0 0 ${lidar_height/2}" rpy="0 0 0" />
+    <geometry>
+        <box size="${lidar_length} ${lidar_width} ${lidar_height}"/>
+    </geometry>
+</xacro:macro>
+<xacro:macro name="lidar_inertial">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <xacro:box_inertial mass="${lidar_weight}" length="${lidar_length}" width="${lidar_width}" height="${lidar_height}" />
+</xacro:macro>
 
 </robot>

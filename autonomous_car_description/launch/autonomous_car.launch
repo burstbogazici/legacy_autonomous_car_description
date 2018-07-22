@@ -13,7 +13,7 @@
         <arg name="headless" value="false"/>
     </include>
 
-    <param name="robot_description" command="$(find xacro)/xacro '$(find autonomous_car_description)/urdf/autonomous_car.xacro'" />
+    <param name="robot_description" command="$(find xacro)/xacro '$(find autonomous_car_description)/urdf/autonomous_car.urdf'" />
     <param name="use_gui" value="$(arg gui)"/>
 
     <include file="$(find autonomous_car_description)/launch/autonomous_car_spawn.launch"/>
