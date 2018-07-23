@@ -50,14 +50,14 @@
     </geometry>
 </xacro:macro>
 <xacro:macro name="chassis_geometry">
-    <origin xyz="0 0 ${chassis_thickness/4}" rpy="0 0 0" />
+    <origin xyz="0 0 ${chassis_thickness/2}" rpy="0 0 0" />
     <geometry>
-        <box size="${chassis_width} ${chassis_length} ${chassis_thickness/2}"/>
+        <box size="${chassis_width} ${chassis_length} ${chassis_thickness}"/>
     </geometry>
 </xacro:macro>
 <xacro:macro name="chassis_inertial">
-    <origin xyz="0 0 ${chassis_thickness/4}" rpy="0 0 0" />
-    <xacro:box_inertial mass="${chassis_weight}" length="${chassis_length}" width="${chassis_width}" height="${chassis_thickness/2}" />
+    <origin xyz="0 0 ${chassis_thickness/8}" rpy="0 0 0" />
+    <xacro:box_inertial mass="${chassis_weight}" length="${chassis_length}" width="${chassis_width}" height="${chassis_thickness/4}" />
 </xacro:macro>
 
 <!-- Hinge -->
