@@ -37,9 +37,9 @@ target_link_libraries(AutonomousCarPlugin
 )
 
 
-add_executable(AutonomousCarWrapper src/AutonomousCarWrapper.cpp)
-add_dependencies(AutonomousCarWrapper ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(AutonomousCarWrapper
+add_executable(AutonomousCarEncoder src/AutonomousCarEncoder.cpp)
+add_dependencies(AutonomousCarEncoder ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(AutonomousCarEncoder
   ${catkin_LIBRARIES}
   ${OpenCV_LIBRARIES}
 )

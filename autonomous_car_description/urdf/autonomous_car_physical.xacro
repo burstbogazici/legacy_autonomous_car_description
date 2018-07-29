@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <robot name="autonomous_car" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+<xacro:property name="pi" value="3.1415" />
+
+
 <!-- Chassis related properties -->
 <xacro:property name="chassis_width" value="1.100" />
 <xacro:property name="chassis_length" value="2.717" />
