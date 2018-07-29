@@ -18,10 +18,10 @@
 
     <include file="$(find autonomous_car_description)/launch/autonomous_car_spawn.launch"/>
 
-    <!--<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
         <param name="use_gui" value="true"/>
         <remap from="/joint_states" to="/autonomous_car/joint_states" />
-    </node>-->
+    </node>
 
     <node pkg="autonomous_car_description" type="Autonomous_Car_Gazebo_Plugin" name="Autonomous_Car_Gazebo_Plugin" output="screen">
     </node>

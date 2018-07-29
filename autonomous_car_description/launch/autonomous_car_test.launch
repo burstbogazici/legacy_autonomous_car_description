@@ -22,6 +22,9 @@
     <node pkg="autonomous_car_description" type="Autonomous_Car_Gazebo_Plugin" name="Autonomous_Car_Gazebo_Plugin" output="screen">
     </node>
 
+    <node pkg="autonomous_car_description" type="AutonomousCarEncoder" name="AutonomousCarEncoder" output="screen">
+    </node>
+
     <node name="rviz_visualizer" pkg="rviz" type="rviz" required="true"/>
 
 </launch>

@@ -13,6 +13,8 @@ float encoderOfFrontRightWheel = 0;
 float encoderOfRearLeftWheel = 0;
 float encoderOfRearRightWheel = 0;
 
+bool update = false;
+
 int getIndex(std::vector<std::string> names, std::string name) {
   for(size_t index = 0; index < name.size(); index++) {
     if(name.compare(names.at(index)) == 0) {
@@ -40,6 +42,10 @@ void callbackSubscriber(const sensor_msgs::JointStateConstPtr& message) {
     encoderOfFrontRightWheel = (encoderOfFrontRightWheel / (2*M_PI)) * (24);
     encoderOfRearLeftWheel = (encoderOfRearLeftWheel / (2*M_PI)) * (24);
     encoderOfRearRightWheel = (encoderOfRearRightWheel / (2*M_PI)) * (24);
+
+    if(encoderOfFrontLeftWheel != 0 || encoderOfFrontRightWheel != 0 || encoderOfRearLeftWheel != 0 || encoderOfRearRightWheel != 0) {
+      update = true;
+    }
   }
 }
 
@@ -59,17 +65,22 @@ int main(int argc, char **argv) {
 
   ros::Rate loop(20);
   while(ros::ok()) {
-    std_msgs::Int32 encoderFrontMessage;
-    encoderFrontMessage.data = (encoderOfFrontLeftWheel + encoderOfFrontRightWheel) / 2;
-    encoderFrontPublisher.publish(encoderFrontMessage);
 
-    std_msgs::Int32 encoderRearMessage;
-    encoderRearMessage.data = (encoderOfRearLeftWheel + encoderOfRearRightWheel) / 2;
-    encoderRearPublisher.publish(encoderRearMessage);
+    if(update == true) {
+      std_msgs::Int32 encoderFrontMessage;
+      encoderFrontMessage.data = (encoderOfFrontLeftWheel + encoderOfFrontRightWheel) / 2;
+      encoderFrontPublisher.publish(encoderFrontMessage);
 
-    std_msgs::Int32 timestampMessage;
-    timestampMessage.data = (messageTimestamp.sec * 1000) + (messageTimestamp.nsec / 1000000);
-    timestampPublisher.publish(encoderRearMessage);
+      std_msgs::Int32 encoderRearMessage;
+      encoderRearMessage.data = (encoderOfRearLeftWheel + encoderOfRearRightWheel) / 2;
+      encoderRearPublisher.publish(encoderRearMessage);
+
+      std_msgs::Int32 timestampMessage;
+      timestampMessage.data = (messageTimestamp.sec * 1000) + (messageTimestamp.nsec / 1000000);
+      timestampPublisher.publish(encoderRearMessage);
+
+      update = false;
+    }
 
     ros::spinOnce();
     loop.sleep();
