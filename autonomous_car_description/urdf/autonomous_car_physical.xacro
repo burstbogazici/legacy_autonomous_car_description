@@ -47,10 +47,10 @@
 
 <!-- Chassis -->
 <xacro:macro name="chassis_visual">
-    <origin xyz="0 0 ${chassis_thickness/2}" rpy="0 0 0" />
+    <origin xyz="0 -1.2 -0.08" rpy="${pi/2} 0 0" />
     <geometry>
-        <box size="${chassis_width} ${chassis_length} ${chassis_thickness}"/>
-    </geometry>
+        <mesh filename="package://autonomous_car_description/meshes/59RK.stl" scale="0.001 0.001 0.001"/>
+	</geometry>
 </xacro:macro>
 <xacro:macro name="chassis_geometry">
     <origin xyz="0 0 ${chassis_thickness/2}" rpy="0 0 0" />

@@ -1,0 +1,32 @@
+<launch>
+    <param name="use_sim_time" type="bool" value="true" />
+
+    <arg name="world_name" default="autonomous_car" />
+    <arg name="gui" default="true" />
+
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find autonomous_car_description)/worlds/$(arg world_name).world"/>
+        <arg name="gui" value="$(arg gui)"/>
+        <arg name="debug" value="false" />
+        <arg name="paused" value="false"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="headless" value="false"/>
+    </include>
+
+    <param name="robot_description" command="$(find xacro)/xacro '$(find autonomous_car_description)/urdf/autonomous_car.urdf'" />
+    <param name="use_gui" value="$(arg gui)"/>
+
+    <include file="$(find autonomous_car_description)/launch/autonomous_car_spawn.launch"/>
+
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+        <param name="use_gui" value="true"/>
+        <remap from="/joint_states" to="/autonomous_car/joint_states" />
+    </node>
+
+    <node pkg="autonomous_car_description" type="Autonomous_Car_Gazebo_Plugin" name="Autonomous_Car_Gazebo_Plugin" output="screen">
+    </node>
+
+    <node pkg="autonomous_car_description" type="AutonomousCarEncoder" name="AutonomousCarEncoder" output="screen">
+    </node>
+
+</launch>

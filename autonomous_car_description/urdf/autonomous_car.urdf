@@ -177,14 +177,14 @@
     <sensor type="camera" name="front_camera">
         <update_rate>30.0</update_rate>
         <camera name="head">
-        <horizontal_fov>1.3962634</horizontal_fov>
+        <horizontal_fov>1.36135682</horizontal_fov>
         <image>
-        <width>800</width>
-        <height>800</height>
+        <width>1280</width>
+        <height>720</height>
         <format>R8G8B8</format>
         </image>
         <clip>
-        <near>0.02</near>
+        <near>0.2</near>
         <far>300</far>
         </clip>
         <noise>
